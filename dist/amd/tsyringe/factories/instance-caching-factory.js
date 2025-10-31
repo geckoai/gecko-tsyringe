@@ -1,0 +1,14 @@
+define(["require", "exports"], function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    function instanceCachingFactory(factoryFunc) {
+        var instance;
+        return function (dependencyContainer) {
+            if (instance == undefined) {
+                instance = factoryFunc(dependencyContainer);
+            }
+            return instance;
+        };
+    }
+    exports.default = instanceCachingFactory;
+});

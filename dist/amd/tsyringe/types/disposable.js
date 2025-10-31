@@ -1,0 +1,15 @@
+define(["require", "exports"], function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.isDisposable = void 0;
+    function isDisposable(value) {
+        if (typeof value.dispose !== 'function')
+            return false;
+        var disposeFun = value.dispose;
+        if (disposeFun.length > 0) {
+            return false;
+        }
+        return true;
+    }
+    exports.isDisposable = isDisposable;
+});
