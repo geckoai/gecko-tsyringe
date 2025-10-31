@@ -1,22 +1,22 @@
 # gecko-tsyringe
 
-A powerful TypeScript dependency injection container extended from tsyringe, providing a modular dependency management solution.
+一个强大的TypeScript依赖注入容器，基于tsyringe扩展，提供模块化的依赖管理解决方案。
 
 ## Installing
 
-Install using npm:
+使用npm安装：
 
 ```bash
 npm install @geckoai/gecko-tsyringe
 ```
 
-Install using yarn:
+使用yarn安装：
 
 ```bash
 yarn add @geckoai/gecko-tsyringe
 ```
 
-Install using pnpm:
+使用pnpm安装：
 
 ```bash
 pnpm add @geckoai/gecko-tsyringe
@@ -24,12 +24,12 @@ pnpm add @geckoai/gecko-tsyringe
 
 ## Example Usage
 
-### Basic Usage
+### 基本使用
 
 ```typescript
 import { injectable, Module, Lifecycle } from '@geckoai/gecko-tsyringe';
 
-// Define an injectable service
+// 定义可注入的服务
 @injectable
 export class UserService {
   sayHello() {
@@ -37,7 +37,7 @@ export class UserService {
   }
 }
 
-// Define a module
+// 定义模块
 @Module({
   providers: [UserService],
   exports: [UserService]
@@ -46,7 +46,7 @@ export class UserModule {
   constructor(private userService: UserService) {}
 }
 
-// Define the application main module
+// 定义应用主模块
 @Module(
   {
     imports: [UserModule],
@@ -59,10 +59,10 @@ export class Application {
 }
 ```
 
-### Module Nesting and Dependency Injection
+### 模块嵌套和依赖注入
 
 ```typescript
-// Service definition
+// 服务定义
 @injectable
 export class DatabaseService {
   connect() {
@@ -70,14 +70,14 @@ export class DatabaseService {
   }
 }
 
-// Export module
+// 导出模块
 @Module({
   providers: [DatabaseService],
   exports: [DatabaseService]
 })
 export class DatabaseModule {}
 
-// Import module
+// 导入模块
 @Module({
   imports: [DatabaseModule],
   providers: []
@@ -89,12 +89,11 @@ export class ApiModule {
 
 ## About
 
-gecko-tsyringe is a dependency injection container extension based on tsyringe, adding modularization capabilities to make dependency management clearer and more structured. It is suitable for small to large TypeScript applications, especially those that require good organizational structure.
+gecko-tsyringe 是一个基于tsyringe的依赖注入容器扩展，增加了模块化功能，使依赖管理更加清晰和结构化。它适用于中小型到大型TypeScript应用，尤其是需要良好组织结构的应用程序。
 
 ## Issues
 
-If you have any questions or suggestions, please submit an issue on GitHub:
-[issues](https://github.com/geckoai/gecko-tsyringe/issues) 
+如有任何问题或建议，请在GitHub上提交[issue:](https://github.com/geckoai/gecko-tsyringe/issues)
 
 ## License
 

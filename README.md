@@ -1,22 +1,22 @@
 # gecko-tsyringe
 
-一个强大的TypeScript依赖注入容器，基于tsyringe扩展，提供模块化的依赖管理解决方案。
+A powerful TypeScript dependency injection container extended from tsyringe, providing a modular dependency management solution.
 
 ## Installing
 
-使用npm安装：
+Install using npm:
 
 ```bash
 npm install @geckoai/gecko-tsyringe
 ```
 
-使用yarn安装：
+Install using yarn:
 
 ```bash
 yarn add @geckoai/gecko-tsyringe
 ```
 
-使用pnpm安装：
+Install using pnpm:
 
 ```bash
 pnpm add @geckoai/gecko-tsyringe
@@ -24,12 +24,12 @@ pnpm add @geckoai/gecko-tsyringe
 
 ## Example Usage
 
-### 基本使用
+### Basic Usage
 
 ```typescript
 import { injectable, Module, Lifecycle } from '@geckoai/gecko-tsyringe';
 
-// 定义可注入的服务
+// Define an injectable service
 @injectable
 export class UserService {
   sayHello() {
@@ -37,7 +37,7 @@ export class UserService {
   }
 }
 
-// 定义模块
+// Define a module
 @Module({
   providers: [UserService],
   exports: [UserService]
@@ -46,7 +46,7 @@ export class UserModule {
   constructor(private userService: UserService) {}
 }
 
-// 定义应用主模块
+// Define the application main module
 @Module(
   {
     imports: [UserModule],
@@ -59,10 +59,10 @@ export class Application {
 }
 ```
 
-### 模块嵌套和依赖注入
+### Module Nesting and Dependency Injection
 
 ```typescript
-// 服务定义
+// Service definition
 @injectable
 export class DatabaseService {
   connect() {
@@ -70,14 +70,14 @@ export class DatabaseService {
   }
 }
 
-// 导出模块
+// Export module
 @Module({
   providers: [DatabaseService],
   exports: [DatabaseService]
 })
 export class DatabaseModule {}
 
-// 导入模块
+// Import module
 @Module({
   imports: [DatabaseModule],
   providers: []
@@ -89,12 +89,12 @@ export class ApiModule {
 
 ## About
 
-gecko-tsyringe 是一个基于tsyringe的依赖注入容器扩展，增加了模块化功能，使依赖管理更加清晰和结构化。它适用于中小型到大型TypeScript应用，尤其是需要良好组织结构的应用程序。
+gecko-tsyringe is a dependency injection container extension based on tsyringe, adding modularization capabilities to make dependency management clearer and more structured. It is suitable for small to large TypeScript applications, especially those that require good organizational structure.
 
 ## Issues
 
-如有任何问题或建议，请在GitHub上提交issue：
-[issues](https://github.com/geckoai/gecko-tsyringe/issues) 
+If you have any questions or suggestions, please submit an [issue](https://github.com/geckoai/gecko-tsyringe/issues)  on GitHub:
+
 
 ## License
 
