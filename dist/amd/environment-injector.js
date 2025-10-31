@@ -148,7 +148,7 @@ define(["require", "exports", "@geckoai/class-mirror", "./decorates", "./utils",
         EnvironmentInjector.run = function (target, metadata) {
             return new EnvironmentInjector(target, undefined, metadata);
         };
-        EnvironmentInjector.execlute = function (target, metadata) {
+        EnvironmentInjector.execute = function (target, metadata) {
             return new EnvironmentInjector(target, undefined, metadata).container.resolve(target);
         };
         EnvironmentInjector.PARENT_CONTAINER = Symbol('PARENT_CONTAINER');

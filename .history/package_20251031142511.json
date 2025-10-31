@@ -1,6 +1,6 @@
 {
   "name": "@geckoai/gecko-tsyringe",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "A powerful TypeScript dependency injection container extended from tsyringe, providing a modular dependency management solution.",
   "main": "dist/cjs",
   "types": "dist/types",
@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "typescript": "4.9.5",
-    "typedoc": "0.26.11",                          
+    "typedoc": "0.26.11",
     "ts-node": "^10.9.2",
     "mocha": "^11.7.1",
     "@types/mocha": "^10.0.10",

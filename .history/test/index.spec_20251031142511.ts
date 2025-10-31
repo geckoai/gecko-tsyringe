@@ -8,7 +8,7 @@ import { ImportModule } from '../sample/ImportModule';
 
 describe('Application', () => {
   it('container.get(Application) instanceOf Application', () => {
-    const instance = EnvironmentInjector.execute(Application);
+    const instance = EnvironmentInjector.execlute(Application);
     assert.instanceOf(instance, Application);
     console.log(instance.user);
   });

@@ -1,6 +1,6 @@
 {
   "name": "@geckoai/gecko-tsyringe",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "A powerful TypeScript dependency injection container extended from tsyringe, providing a modular dependency management solution.",
   "main": "dist/cjs",
   "types": "dist/types",

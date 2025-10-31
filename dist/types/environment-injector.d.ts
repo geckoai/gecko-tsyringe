@@ -56,5 +56,5 @@ export declare class EnvironmentInjector<T extends ClassConstructor> {
      * Execute the environment injector and resolve the target class
      * @param target The class to be decorated
      */
-    static execlute<T extends ClassConstructor>(target: T, metadata?: Partial<ModuleMetadata>): any;
+    static execute<T extends ClassConstructor>(target: T, metadata?: Partial<ModuleMetadata>): any;
 }
