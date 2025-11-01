@@ -108,3 +108,7 @@ template/.env
 # lockfile
 yarn.lock
 npm.lock
+
+
+# history
+.history/

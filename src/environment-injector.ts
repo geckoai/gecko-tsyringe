@@ -56,6 +56,8 @@ export class EnvironmentInjector<T extends ClassConstructor> {
   public readonly container: DependencyContainer;
   public static readonly PARENT_CONTAINER = Symbol('PARENT_CONTAINER');
   public static readonly ROOT_CONTAINER = Symbol('ROOT_CONTAINER');
+  public static readonly IMPORT_INJECTORS = Symbol('IMPORT_INJECTORS');
+  public static readonly CONTAINER = Symbol('CONTAINER');
 
   public static createRootContainer(): DependencyContainer {
     const root = new InternalDependencyContainer();
@@ -84,10 +86,14 @@ export class EnvironmentInjector<T extends ClassConstructor> {
       EnvironmentInjector.createRootContainer();
     // Register parent container
     this.container.registerInstance(EnvironmentInjector.PARENT_CONTAINER, this);
+
+    this.container.registerInstance(EnvironmentInjector.IMPORT_INJECTORS, []);
     // Register class mirror
     this.container.registerInstance(ClassMirror, mirror);
 
     const { _imports, _providers, _exports, container } = this;
+    // Register container
+    this.container.registerInstance(EnvironmentInjector.CONTAINER, container);
 
     // Set metadata defaults
     if (metadata) {
@@ -159,7 +165,7 @@ export class EnvironmentInjector<T extends ClassConstructor> {
     });
 
     // Handle imports
-    _imports.forEach((imp) => {
+    const injectors = Array.from(_imports).map((imp) => {
       if (isModuleWithProviders(imp)) {
         const injector = new EnvironmentInjector(imp.module, this, {
           providers: imp.providers,
@@ -178,6 +184,10 @@ export class EnvironmentInjector<T extends ClassConstructor> {
         useFactory: () => injector.container.resolve(imp),
       });
       return injector;
+    });
+
+    container.register(EnvironmentInjector.IMPORT_INJECTORS, {
+      useValue: injectors,
     });
 
     // Handle exports
@@ -203,9 +213,9 @@ export class EnvironmentInjector<T extends ClassConstructor> {
       });
     }
 
-    const lifecycles = mirror.getAllDecorates(LifecycleDecorate);
-    if (lifecycles.length) {
-      lifecycles.forEach((d) =>
+    const lifecycleDecorates = mirror.getAllDecorates(LifecycleDecorate);
+    if (lifecycleDecorates.length) {
+      lifecycleDecorates.forEach((d) =>
         container.register(target, target, {
           lifecycle: d.metadata,
         }),
